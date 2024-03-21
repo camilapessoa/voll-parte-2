@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import CampoDigitacao from "../../components/CampoDigitacao";
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import Botao from "../../components/Botao";
 import { Link, useNavigate } from "react-router-dom";
 import logo from './Logo.png';
@@ -36,14 +36,14 @@ const LinkCustomizado = styled(Link)`
 `;
 
 const Formulario = styled.form`
-  width: 70%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
 const BotaoCustomizado = styled(Botao)`
-  width: 50%;
+  width: 70%;
 `;
 
 interface ILogin  {
@@ -57,34 +57,48 @@ export default function Login() {
     const {cadastrarDados, erro, sucesso, resposta} = usePost();
     const navigate = useNavigate();
 
+    
+    
     const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       const usuario: ILogin = {
         email: email,
         senha: senha
       }
-
       try {
-        cadastrarDados({ url: "auth/login", dados: usuario})
-        autenticaStore.login({email: email, token: resposta})
-        resposta && navigate('/dashboard')
+        cadastrarDados({ url: "auth/login", dados: usuario })
       } catch (erro) {
-        erro && alert('Não foi possível fazer login')
+        erro && alert('Não foi possível fazer o login')
       }
-
     }
+  
+    useEffect(() => {
+      if (resposta) {
+        autenticaStore.login({ email: email, token: resposta });
+        console.log(resposta);
+        
+        navigate("/dashboard");
+      }
+    }, [email, navigate, resposta]);
+  
 
     return (
         <>
         <Imagem src={logo} alt="Logo da Voll" />
         <Titulo>Faça login em sua conta</Titulo>
-        <Formulario onSubmit={handleLogin}>
-            <CampoDigitacao tipo="email" label="Email" valor={email} placeholder="Insira seu endereço de email" onChange={setEmail} />
-            <CampoDigitacao tipo="password" label="Senha" valor={senha} placeholder="Insira sua senha" onChange={setSenha} />
-            <BotaoCustomizado type="submit">Entrar</BotaoCustomizado>
+        <Formulario onSubmit={handleLogin} id="formulario">
+            <CampoDigitacao tipo="email" label="Email" valor={email} placeholder="Insira seu endereço de email" onChange={setEmail} 
+            dataTest="inputLoginEmail"/>
+            <CampoDigitacao tipo="password" label="Senha" valor={senha} placeholder="Insira sua senha" onChange={setSenha} 
+            dataTest="inputLoginSenha"/>
+            <BotaoCustomizado type="submit" form="formulario" data-test="botaoTeste">Entrar</BotaoCustomizado>
         </Formulario>
+        
         <Paragrafo>Esqueceu sua senha?</Paragrafo>
         <ParagrafoCadastro>Ainda não tem conta? <LinkCustomizado to="/cadastro">Faça seu cadastro!</LinkCustomizado></ParagrafoCadastro>
         </>  
+      
     )
+    
+  
 }

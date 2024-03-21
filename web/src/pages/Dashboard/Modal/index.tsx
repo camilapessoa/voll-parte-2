@@ -115,14 +115,23 @@ export default function ModalCadastro({ open, handleClose }: { open: boolean, ha
                     <Titulo>Cadastre o especialista inserindo os dados abaixo:</Titulo>
                     <form onSubmit={handleSubmit}>
                         <Container>
-                            <CampoDigitacao tipo="text" label="Nome" valor={nome} placeholder="Digite seu nome completo" onChange={setNome} />
-                            <CampoDigitacao tipo="email" label="Email" valor={email} placeholder="Digite seu email" onChange={setEmail} />
-                            <CampoDigitacao tipo="password" label="Senha" valor={senha} placeholder="Digite sua senha" onChange={setSenha} />
-                            <CampoDigitacao tipo="password" label="Repita a senha" valor={senhaVerificada} placeholder="Digite sua senha novamente" onChange={setSenhaVerificada} />
-                            <CampoDigitacao tipo="text" label="Especialidade" valor={especialidade} placeholder="Qual sua especialidade?" onChange={setEspecialidade} />
-                            <CampoDigitacao tipo="number" label="CRM" valor={crm} placeholder="Insira seu número de registro" onChange={setCrm} />
-                            <CampoDigitacao tipo="tel" label="Telefone" valor={telefone} placeholder="(DDD) XXXXX-XXXX" onChange={setTelefone} />
-                            <CampoDigitacao tipo="text" label="Insira a URL da sua imagem" valor={imagem} placeholder="https://img.com/fotos/retrato-de-um-jovem-medico" onChange={setImagem} />
+                            <CampoDigitacao tipo="text" label="Nome" valor={nome} placeholder="Digite seu nome completo" onChange={setNome} 
+                            dataTest="inputEspecialistaNome"
+                            />
+                            <CampoDigitacao tipo="email" label="Email" valor={email} placeholder="Digite seu email" onChange={setEmail}
+                            dataTest="inputEspecialistaEmail" />
+                            <CampoDigitacao tipo="password" label="Senha" valor={senha} placeholder="Digite sua senha" onChange={setSenha} 
+                            dataTest="inputEspecialistaSenha"/>
+                            <CampoDigitacao tipo="password" label="Repita a senha" valor={senhaVerificada} placeholder="Digite sua senha novamente" onChange={setSenhaVerificada} 
+                            dataTest="inputEspecialistaSenhaVerificada"/>
+                            <CampoDigitacao tipo="text" label="Especialidade" valor={especialidade} placeholder="Qual sua especialidade?" onChange={setEspecialidade} 
+                            dataTest="inputEspecialistaEspecialidade"/>
+                            <CampoDigitacao tipo="number" label="CRM" valor={crm} placeholder="Insira seu número de registro" onChange={setCrm} 
+                            dataTest="inputEspecialistaCRM"/>
+                            <CampoDigitacao tipo="tel" label="Telefone" valor={telefone} placeholder="(DDD) XXXXX-XXXX" onChange={setTelefone} 
+                            dataTest="inputEspecialistaTel"/>
+                            <CampoDigitacao tipo="text" label="Insira a URL da sua imagem" valor={imagem} placeholder="https://img.com/fotos/retrato-de-um-jovem-medico" onChange={setImagem} 
+                            dataTest="inputEspecialistaImagem"/>
 
                             <CampoDigitacao
                                 tipo="number"
@@ -130,6 +139,7 @@ export default function ModalCadastro({ open, handleClose }: { open: boolean, ha
                                 valor={cep}
                                 placeholder="Insira o CEP"
                                 onChange={setCep}
+                                dataTest="inputEspecialistaCEP"
                             />
                             <ContainerEndereco>
                                 <CampoDigitacao
@@ -137,24 +147,28 @@ export default function ModalCadastro({ open, handleClose }: { open: boolean, ha
                                     valor={rua}
                                     placeholder="Rua"
                                     onChange={setRua}
+                                    dataTest="inputEspecialistaRua"
                                 />
                                 <CampoDigitacao
                                     tipo="number"
                                     valor={numero}
                                     placeholder="Número"
                                     onChange={setNumero}
+                                    dataTest="inputEspecialistaNumero"
                                 />
                                 <CampoDigitacao
                                     tipo="text"
                                     valor={complemento}
                                     placeholder="Complemento"
                                     onChange={setComplemento}
+                                    dataTest="inputEspecialistaComplemento"
                                 />
                                 <CampoDigitacao
                                     tipo="text"
                                     valor={estado}
                                     placeholder="Estado"
                                     onChange={setEstado}
+                                    dataTest="inputEspecialistaEstado"
                                 />
                             </ContainerEndereco>
                         </Container>

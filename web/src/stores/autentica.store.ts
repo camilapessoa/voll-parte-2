@@ -19,8 +19,9 @@ class AutenticaStore {
     }
 
     login({email, token} : IUsuario) {
-        this.estaAutenticado = true;
         this.usuario = {email, token};
+        this.estaAutenticado = true;
+        
     }
 
     logout() {

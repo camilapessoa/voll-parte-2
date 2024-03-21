@@ -62,7 +62,7 @@ export default function Cadastro() {
     const [numero, setNumero] = useState('');
     const [estado, setEstado] = useState('');
     const [complemento, setComplemento] = useState('');
-    const {cadastrarDados, erro, sucesso} = usePost();
+    const {cadastrarDados, erro, sucesso, resposta} = usePost();
     const navigate = useNavigate();
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -84,7 +84,7 @@ export default function Cadastro() {
 
         if (etapaAtiva !== 0) {
             try {
-                cadastrarDados({url: 'clinica', dados: clinica});
+                cadastrarDados({url: 'clinica', dados: clinica, token:resposta});
                 navigate('/login');
             } catch (erro) {
                 erro && alert('Erro ao cadastrar os dados')
@@ -125,6 +125,7 @@ export default function Cadastro() {
                             valor={nome}
                             placeholder="Insira seu nome"
                             onChange={setNome}
+                            dataTest="inputNome"
                         />
                         <CampoDigitacao
                             tipo="text"
@@ -132,6 +133,7 @@ export default function Cadastro() {
                             valor={cnpj}
                             placeholder="Insira seu cnpj"
                             onChange={setCnpj}
+                            dataTest="inputCNPJ"
                         />
                         <CampoDigitacao
                             tipo="email"
@@ -139,6 +141,7 @@ export default function Cadastro() {
                             valor={email}
                             placeholder="Insira o endereço de e-mail para login"
                             onChange={setEmail}
+                            dataTest="inputEmail"
                         />
                         <CampoDigitacao
                             tipo="password"
@@ -146,6 +149,7 @@ export default function Cadastro() {
                             valor={senha}
                             placeholder="Digite sua senha"
                             onChange={setSenha}
+                            dataTest="inputSenha"
                         />
                         <CampoDigitacao
                             tipo="password"
@@ -153,6 +157,7 @@ export default function Cadastro() {
                             valor={senhaVerificada}
                             placeholder="Confirme sua senha"
                             onChange={setSenhaVerificada}
+                            dataTest="inputSenhaVerificada"
                         />
                         <BotaoCustomizado type="submit">Avançar</BotaoCustomizado>
                     </Formulario>
@@ -166,6 +171,7 @@ export default function Cadastro() {
                             valor={telefone}
                             placeholder="(DDD) XXXXX-XXXX"
                             onChange={setTelefone}
+                            dataTest="inputTelefone"
                         />
                         <CampoDigitacao
                             tipo="number"
@@ -173,6 +179,7 @@ export default function Cadastro() {
                             valor={cep}
                             placeholder="Insira o CEP"
                             onChange={setCep}
+                            dataTest="inputCEP"
                         />
                         <CampoDigitacao
                             tipo="text"
@@ -180,6 +187,7 @@ export default function Cadastro() {
                             valor={rua}
                             placeholder="Rua"
                             onChange={setRua}
+                            dataTest="inputRua"
                         />
                         <Container>
                             <CampoDigitacao
@@ -187,21 +195,25 @@ export default function Cadastro() {
                                 valor={numero}
                                 placeholder="Número"
                                 onChange={setNumero}
+                                dataTest="inputNumero"
                             />
                             <CampoDigitacao
                                 tipo="text"
                                 valor={complemento}
                                 placeholder="Complemento"
                                 onChange={setComplemento}
+                                dataTest="inputComplemento"
                             />
                             <CampoDigitacao
                                 tipo="text"
                                 valor={estado}
                                 placeholder="Estado"
                                 onChange={setEstado}
+                                dataTest="inputEstado"
                             />
                         </Container>
                         <BotaoCustomizado type="submit">Cadastrar</BotaoCustomizado>
+                    
                     </Formulario>
                 </>
     )

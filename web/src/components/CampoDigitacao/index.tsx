@@ -28,10 +28,11 @@ interface Props {
     tipo: string,
     placeholder: string,
     onChange: (value: string) => void,
-    label?: string
+    label?: string,
+    dataTest: string
 }
 
-export default function CampoDigitacao({ valor, tipo, placeholder, onChange, label} : Props) {
+export default function CampoDigitacao({ valor, tipo, placeholder, onChange, label, dataTest} : Props) {
     return (
         <Container>
         <Rotulo>{label}</Rotulo>
@@ -41,6 +42,7 @@ export default function CampoDigitacao({ valor, tipo, placeholder, onChange, lab
         placeholder={placeholder}
         onChange={(e) => onChange(e.target.value)}
         required
+        data-test={dataTest}
         />
         </Container>
     )

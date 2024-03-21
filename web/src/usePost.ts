@@ -21,9 +21,14 @@ export default function usePost() {
                 headers,
                 body: JSON.stringify(dados)
             })
+            
+           
+         const respostaConvertida = await resposta.json();
+         setResposta(respostaConvertida.token);
+
+         localStorage.setItem('token', respostaConvertida.token);
+
             setSucesso(true);
-            const respostaConvertida = await resposta.json();
-            setResposta(respostaConvertida.token);
         } catch (erro) {
         setErro('Não foi possível enviar os dados');
     }
