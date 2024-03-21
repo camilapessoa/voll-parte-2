@@ -68,12 +68,14 @@ export default function Login() {
       try {
         cadastrarDados({ url: "auth/login", dados: usuario })
       } catch (erro) {
-        erro && alert('Não foi possível fazer o login')
+        erro && console.log('Não foi possível fazer o login')
       }
     }
   
     useEffect(() => {
-      if (resposta) {
+      const loggedUser = localStorage.getItem('token')
+      
+      if (resposta || loggedUser) {
         autenticaStore.login({ email: email, token: resposta });
         console.log(resposta);
         
