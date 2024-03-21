@@ -27,6 +27,7 @@ class AutenticaStore {
     logout() {
         this.estaAutenticado = false;
         this.usuario = {email: "", token: ""}
+        localStorage.clear()
     }
 }
 
